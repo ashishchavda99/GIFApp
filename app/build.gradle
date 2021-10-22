@@ -1,0 +1,54 @@
+import com.rabsstract.gifapp.Libs
+import com.rabsstract.gifapp.BuildConfig
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdk BuildConfig.COMPILE_SDK_VERSION
+
+    defaultConfig {
+        applicationId BuildConfig.APPLICATION_ID
+        minSdk BuildConfig.MIN_SDK_VERSION
+        targetSdk BuildConfig.TARGET_SDK_VERSION
+        versionCode BuildConfig.VERSION_CODE
+        versionName BuildConfig.VERSION_NAME
+
+        testInstrumentationRunner BuildConfig.TEST_INSTRUMENTATION_RUNNER
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation Libs.Android.CORE_KTX
+    implementation Libs.Android.APP_COMPACT
+    implementation Libs.Android.APP_MATERIAL
+    implementation Libs.Android.APP_CONSTRAINT
+    implementation Libs.Android.LIVEDATA_KTX
+    implementation Libs.Android.VIEWMODEL_KTX
+
+
+    testImplementation Libs.Testing.JUNIT
+    androidTestImplementation Libs.Testing.JUNIT_EXT
+    androidTestImplementation Libs.Testing.ESPRESSO_CORE
+}

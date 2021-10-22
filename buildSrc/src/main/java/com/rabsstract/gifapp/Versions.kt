@@ -21,7 +21,7 @@ object Versions {
     }
 
     object Network {
-
+        const val RETROFIT_JSON_CONVERTER = "2.9.0"
     }
 
     object Room {

@@ -42,4 +42,7 @@ object Libs {
     object KOTLIN {
 
     }
+    object Network {
+        const val RETROFIT_JSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${Versions.Network.RETROFIT_JSON_CONVERTER}"
+    }
 }

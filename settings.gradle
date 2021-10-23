@@ -10,3 +10,4 @@ rootProject.name = "GIF App"
 include ':app'
 include ':model'
 include ':data'
+include ':core'

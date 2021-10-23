@@ -4,6 +4,7 @@ import com.rabsstract.gifapp.Libs
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -16,9 +17,13 @@ android {
         versionName BuildConfig.VERSION_NAME
 
         testInstrumentationRunner BuildConfig.TEST_INSTRUMENTATION_RUNNER
+        buildConfigField "String", "BASE_URL", "\""+BuildConfig.BASE_URL+"\""
+        buildConfigField "String", "ACCESS_KEY", "\""+BuildConfig.ACCESS_KEY+"\""
+
     }
 
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -28,12 +33,43 @@ android {
 
 dependencies {
 
+    implementation project(path: ':model')
+    implementation project(path: ':core')
+
     implementation Libs.Android.CORE_KTX
     implementation Libs.Android.APP_COMPACT
     implementation Libs.Android.APP_MATERIAL
-    implementation Libs.Network.RETROFIT_JSON_CONVERTER
 
+
+    // Network
+    implementation Libs.Network.RETROFIT_JSON_CONVERTER
+    implementation Libs.Network.RETROFIT
+    implementation Libs.Network.RETROFIT_COROUTINES
+    implementation Libs.Network.RETROFIT_RX_ADAPTER
+
+    //okhttp
+    implementation Libs.Network.OK_HTTP
+    implementation Libs.Network.OK_HTTP_LOG
+
+    implementation Libs.DependencyInversion.KOIN_SCOPE_FEATURES
+    implementation Libs.DependencyInversion.KOIN_VIEWMODEL_FEATURES
+
+
+    // for room
+    implementation Libs.Room.ROOM_RUNTIME
+    implementation Libs.Room.ROOM_KTX
+    annotationProcessor Libs.Room.ROOM_COMPILER
+    kapt Libs.Room.ROOM_COMPILER
+
+
+    //---------------------------- TESTING ----------------------------//
     testImplementation Libs.Testing.JUNIT
     androidTestImplementation Libs.Testing.JUNIT_EXT
     androidTestImplementation Libs.Testing.ESPRESSO_CORE
+
+    testImplementation Libs.Testing.MOCK_SEREVER
+    testImplementation Libs.Testing.KOIN_TEST
+    testImplementation Libs.Testing.JUNIT_EXT
+    testImplementation Libs.Testing.MOKK
+    testImplementation Libs.Testing.CORE_TEST
 }

@@ -29,6 +29,7 @@ dependencies {
     implementation Libs.Android.APP_COMPACT
     implementation Libs.Android.APP_MATERIAL
     implementation Libs.Network.RETROFIT_JSON_CONVERTER
+    implementation project(path: ':model')
 
     testImplementation Libs.Testing.JUNIT
     androidTestImplementation Libs.Testing.JUNIT_EXT

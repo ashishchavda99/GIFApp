@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.rabstract.data.db.GifDataBase
 import com.rabstract.data.db.dao.FavouriteGifDao
+import com.rabstract.data.repository.GifRepository
+import com.rabstract.data.repository.GifRepositoryImpl
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
@@ -20,6 +22,13 @@ val dataModule = module {
     }
 
     single { provideFavouriteGifDao(get()) }
+
+
+    fun provideGifRepository(): GifRepository {
+        return GifRepositoryImpl()
+    }
+    factory { provideGifRepository() }
+
 }
 
 

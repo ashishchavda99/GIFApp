@@ -5,7 +5,7 @@ import com.rabstract.model.GifData
 import kotlinx.coroutines.flow.Flow
 
 
-interface GifRepository {
+interface GifFavouriteRepository {
 
     suspend fun saveFavouriteGif(gifData: GifData)
     suspend fun isFavouriteGif(id: String)

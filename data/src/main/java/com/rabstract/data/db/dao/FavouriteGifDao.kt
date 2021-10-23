@@ -14,7 +14,7 @@ interface FavouriteGifDao {
     suspend fun delete(favouriteGif: FavouriteGif): Int
 
     @Query("SELECT * FROM my_fav_gif")
-    suspend fun getFavouriteGifs(): Flow<List<FavouriteGif>>
+    fun getFavouriteGifs(): Flow<List<FavouriteGif>>
 
     @Query("SELECT EXISTS(SELECT * FROM my_fav_gif where id = :id)")
     suspend fun isFavourite(id: String): Boolean

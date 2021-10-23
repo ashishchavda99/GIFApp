@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class GifRepositoryImpl : GifRepository, KoinComponent {
+class GifFavouriteRepositoryImpl : GifFavouriteRepository, KoinComponent {
 
     val api: GifAppApi by inject()
     val dao: FavouriteGifDao by inject()

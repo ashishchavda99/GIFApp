@@ -54,6 +54,8 @@ dependencies {
     implementation Libs.DependencyInversion.KOIN_SCOPE_FEATURES
     implementation Libs.DependencyInversion.KOIN_VIEWMODEL_FEATURES
 
+    //add paging library
+    implementation Libs.Android.PAGING
 
     // for room
     implementation Libs.Room.ROOM_RUNTIME
@@ -72,4 +74,6 @@ dependencies {
     testImplementation Libs.Testing.JUNIT_EXT
     testImplementation Libs.Testing.MOKK
     testImplementation Libs.Testing.CORE_TEST
+    // alternatively - without Android dependencies for tests
+    testImplementation Libs.Testing.PAGING_TEST
 }

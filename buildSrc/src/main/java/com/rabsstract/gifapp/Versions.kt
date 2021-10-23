@@ -10,6 +10,8 @@ object Versions {
         const val APP_MATERIAL = "1.4.0"
         const val APP_CONSTRAINT = "2.1.1"
         const val KTX = "2.3.1"
+        const val PAGING = "3.0.1"
+
     }
 
     object Asynchronous {

@@ -16,7 +16,8 @@ object Libs {
         const val VIEWMODEL_KTX =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.KTX}"
 
-
+        const val PAGING =
+            "androidx.paging:paging-runtime-ktx:${Versions.Android.PAGING}"
 
     }
 
@@ -41,7 +42,8 @@ object Libs {
         const val EXPRE_CONTI = "androidx.test.espresso:espresso-contrib:3.3.0"
         const val MOKK = "io.mockk:mockk:1.9.3"
         const val CORE_TEST = "android.arch.core:core-testing:${Versions.Testing.CORE}"
-
+        const val PAGING_TEST =
+            "androidx.paging:paging-common-ktx:${Versions.Android.PAGING}"
 
     }
 

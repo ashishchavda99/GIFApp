@@ -68,7 +68,8 @@ dependencies {
     testImplementation Libs.Testing.JUNIT
     androidTestImplementation Libs.Testing.JUNIT_EXT
     androidTestImplementation Libs.Testing.ESPRESSO_CORE
-
+    androidTestImplementation Libs.Testing.MOCK_SEREVER
+    androidTestImplementation Libs.Testing.KOIN_TEST
     testImplementation Libs.Testing.MOCK_SEREVER
     testImplementation Libs.Testing.KOIN_TEST
     testImplementation Libs.Testing.JUNIT_EXT

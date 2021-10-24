@@ -13,7 +13,6 @@ class GifFavouriteRepositoryImpl : GifFavouriteRepository, KoinComponent {
     val api: GifAppApi by inject()
     val dao: FavouriteGifDao by inject()
 
-
     /**
      * saveGif to DB
      */
@@ -26,16 +25,16 @@ class GifFavouriteRepositoryImpl : GifFavouriteRepository, KoinComponent {
      * check selected gif is favourite or not
      */
 
-    override suspend fun isFavouriteGif(id: String) {
-        dao.isFavourite(id)
+    override suspend fun isFavouriteGif(id: String): Boolean {
+        return dao.isFavourite(id)
     }
 
     /**
      * deleted selected gif from favourite list
      */
 
-    override suspend fun deleteFavoriteGif(gifData: GifData) {
-        dao.delete(FavouriteGif(gifData.id, gifData))
+    override suspend fun deleteFavoriteGif(gifData: GifData): Int {
+        return dao.delete(FavouriteGif(gifData.id, gifData))
     }
     /**
      * get All Favourites Gif List

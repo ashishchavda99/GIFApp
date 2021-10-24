@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface GifFavouriteRepository {
 
     suspend fun saveFavouriteGif(gifData: GifData)
-    suspend fun isFavouriteGif(id: String)
-    suspend fun deleteFavoriteGif(gifData: GifData)
+    suspend fun isFavouriteGif(id: String): Boolean
+    suspend fun deleteFavoriteGif(gifData: GifData): Int
     suspend fun getFavoriteGifs() : Flow<List<FavouriteGif>>
 }

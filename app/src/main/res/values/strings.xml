@@ -10,4 +10,7 @@
     <string name="activity_favorites_snack_bar_action">Undo</string>
     <string name="activity_favorites_snack_bar_title">Removed</string>
     <string name="search_any_keyword_like_love_smile">Search any Keyword like : love ,smile</string>
+    <string name="network_error">"Please Check Your Network Connection!!"</string>
+    <string name="generice_rror">Something Went Wrong!!</string>
+
 </resources>

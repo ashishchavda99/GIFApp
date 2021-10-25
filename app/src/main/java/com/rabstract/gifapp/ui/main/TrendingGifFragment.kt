@@ -13,8 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rabstract.core.exceptions.NetworkConnectionException
 import com.rabstract.gifapp.R
 import com.rabstract.gifapp.ui.adapter.TrendingGifsAdapter
 import com.rabstract.model.GifData
@@ -30,7 +32,7 @@ import org.koin.core.parameter.parametersOf
  */
 private const val KEY_LAST_ITEM_POSITION = "KEY_LAST_ITEM_POSITION"
 
-class TrendingGifFragment : Fragment() {
+class TrendingGifFragment : Fragment(){
 
     private val viewModelTrending: TrendingGifViewModel by viewModel()
     private val commonViewModel: CommonViewModel by viewModel()
@@ -48,7 +50,6 @@ class TrendingGifFragment : Fragment() {
     companion object {
         fun newInstance() = TrendingGifFragment()
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,6 +83,27 @@ class TrendingGifFragment : Fragment() {
             }
         }
         viewModelTrending.fetchGifsFromRemote()
+        trendingGifsAdapter.addLoadStateListener { loadState ->
+                // getting the error
+                val error = when {
+                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                    else -> null
+                }
+                error?.let {
+                    var errorMsg = it.error.message
+                    if(errorMsg.isNullOrEmpty()){
+                        errorMsg = if (it.error is NetworkConnectionException){
+                            context?.getString(R.string.network_error)
+                        }else{
+                            context?.getString(R.string.generice_rror)
+                        }
+                   }
+                    errorMsg?.let { it1 -> onErrorReceived(it1) }
+                }
+
+        }
     }
 
     private fun initRecyclerView() {
@@ -110,10 +132,11 @@ class TrendingGifFragment : Fragment() {
         return lastItemPosition
     }
 
-    private fun onErrorReceived() {
+    private fun onErrorReceived(msg : String) {
         context?.let {
             AlertDialog.Builder(it)
                 .setTitle(R.string.network_connection_error_title)
+                .setMessage(msg)
                 .setCancelable(false)
                 .setNegativeButton(R.string.network_connection_error_cancel) { _, _ -> activity?.finish() }
                 .setPositiveButton(R.string.network_connection_error_action) { _, _ ->
@@ -151,4 +174,5 @@ class TrendingGifFragment : Fragment() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
+
 }

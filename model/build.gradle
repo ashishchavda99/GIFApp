@@ -35,4 +35,6 @@ dependencies {
     testImplementation Libs.Testing.JUNIT
     androidTestImplementation Libs.Testing.JUNIT_EXT
     androidTestImplementation Libs.Testing.ESPRESSO_CORE
+
+    implementation Libs.Room.ROOM_KTX
 }

@@ -2,8 +2,8 @@ package com.rabstract.data.base
 
 import com.rabstract.data.db.GifDataBase
 import com.rabstract.data.db.dao.FavouriteGifDao
-import com.rabstract.data.db.entity.FavouriteGif
 import com.rabstract.model.Downsized
+import com.rabstract.model.FavouriteGif
 import com.rabstract.model.GifData
 import com.rabstract.model.Images
 import org.junit.After

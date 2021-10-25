@@ -4,12 +4,8 @@ import androidx.room.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.rabstract.data.base.BaseDBTest
-import com.rabstract.data.db.entity.FavouriteGif
 import com.rabstract.data.di.configureAndroidTestAppComponent
-import com.rabstract.data.repository.GifFavouriteRepository
-import com.rabstract.data.repository.GifFavouriteRepositoryImpl
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After

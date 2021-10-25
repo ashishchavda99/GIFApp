@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">GIF App</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Trending GIFs</string>
+    <string name="tab_text_2">Favourite Gifs</string>
+    <string name="activity_favorites_empty_view_title">No favorites Gifs</string>
+    <string name="network_connection_error_title">Network error</string>
+    <string name="network_connection_error_cancel">Cancel</string>
+    <string name="network_connection_error_action">Try again!</string>
+    <string name="activity_favorites_toolbar_title">Favorites</string>
+    <string name="activity_favorites_snack_bar_action">Undo</string>
+    <string name="activity_favorites_snack_bar_title">Removed</string>
+    <string name="search_any_keyword_like_love_smile">Search any Keyword like : love ,smile</string>
 </resources>

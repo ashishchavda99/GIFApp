@@ -1,7 +1,7 @@
 package com.rabstract.data.db.dao
 
 import androidx.room.*
-import com.rabstract.data.db.entity.FavouriteGif
+import com.rabstract.model.FavouriteGif
 import kotlinx.coroutines.flow.Flow
 
 @Dao

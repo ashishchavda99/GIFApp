@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.rabstract.data.db.converter.FavGifJsonConverter
 import com.rabstract.data.db.dao.FavouriteGifDao
-import com.rabstract.data.db.entity.FavouriteGif
+import com.rabstract.model.FavouriteGif
 
 @Database(
     entities = [

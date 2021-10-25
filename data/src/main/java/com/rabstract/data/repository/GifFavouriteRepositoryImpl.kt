@@ -2,7 +2,7 @@ package com.rabstract.data.repository
 
 import com.rabstract.data.GifAppApi
 import com.rabstract.data.db.dao.FavouriteGifDao
-import com.rabstract.data.db.entity.FavouriteGif
+import com.rabstract.model.FavouriteGif
 import com.rabstract.model.GifData
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.KoinComponent
@@ -36,10 +36,9 @@ class GifFavouriteRepositoryImpl : GifFavouriteRepository, KoinComponent {
     override suspend fun deleteFavoriteGif(gifData: GifData): Int {
         return dao.delete(FavouriteGif(gifData.id, gifData))
     }
-    /**
-     * get All Favourites Gif List
-     */
-    override suspend fun getFavoriteGifs(): Flow<List<FavouriteGif>> {
-       return dao.getFavouriteGifs()
+
+    override fun getFavoriteGifs(): Flow<List<FavouriteGif>> {
+        return dao.getFavouriteGifs()
     }
+
 }

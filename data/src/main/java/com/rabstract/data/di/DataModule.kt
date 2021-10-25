@@ -6,10 +6,7 @@ import com.rabstract.data.BuildConfig
 import com.rabstract.data.GifAppApi
 import com.rabstract.data.db.GifDataBase
 import com.rabstract.data.db.dao.FavouriteGifDao
-import com.rabstract.data.repository.GifFavouriteRepository
-import com.rabstract.data.repository.GifFavouriteRepositoryImpl
-import com.rabstract.data.repository.GifTrendingRepository
-import com.rabstract.data.repository.GifTrendingRepositoryImpl
+import com.rabstract.data.repository.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -59,7 +56,7 @@ val dataModule = module {
 
     single { provideHttpClient() }
     single {
-        provideRetrofit(get(),BuildConfig.BASE_URL)
+        provideRetrofit(get(), BuildConfig.BASE_URL)
     }
 
     fun provideGifFavouriteRepository(): GifFavouriteRepository {
@@ -67,17 +64,13 @@ val dataModule = module {
     }
     factory { provideGifFavouriteRepository() }
 
-    fun provideGifTrendingRepository(): GifTrendingRepository {
-        return GifTrendingRepositoryImpl()
-    }
-    factory { provideGifTrendingRepository() }
-
     fun provideGifAppApi(retrofit: Retrofit): GifAppApi {
         return retrofit.create(GifAppApi::class.java)
     }
     single {
         provideGifAppApi(get())
     }
+    single { GifTrendingRepository(api = get(), favouriteRepository = get()) }
 }
 
 

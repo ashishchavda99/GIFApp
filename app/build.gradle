@@ -5,6 +5,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -39,16 +40,28 @@ android {
 }
 
 dependencies {
-
+    implementation project(path: ':model')
+    implementation project(path: ':core')
+    implementation project(path: ':domain')
     implementation Libs.Android.CORE_KTX
     implementation Libs.Android.APP_COMPACT
     implementation Libs.Android.APP_MATERIAL
     implementation Libs.Android.APP_CONSTRAINT
     implementation Libs.Android.LIVEDATA_KTX
     implementation Libs.Android.VIEWMODEL_KTX
+    implementation Libs.Android.RUNTIME_KTX
 
+    implementation Libs.DependencyInversion.KOIN_SCOPE_FEATURES
+    implementation Libs.DependencyInversion.KOIN_VIEWMODEL_FEATURES
 
+    //add paging library
+    implementation Libs.Android.PAGING
     testImplementation Libs.Testing.JUNIT
     androidTestImplementation Libs.Testing.JUNIT_EXT
     androidTestImplementation Libs.Testing.ESPRESSO_CORE
+
+    implementation Libs.UI.GLIDE
+    kapt Libs.UI.GLIDE_COMPILER
+
+    implementation Libs.Android.SWIPE_LAYOUT
 }

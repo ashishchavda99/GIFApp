@@ -11,7 +11,8 @@ object Versions {
         const val APP_CONSTRAINT = "2.1.1"
         const val KTX = "2.3.1"
         const val PAGING = "3.0.1"
-
+        const val LIFE_CYCLE = "2.4.0-alpha02"
+        const val SWIPE_LAYOUT = "1.0.0"
     }
 
     object Asynchronous {
@@ -40,9 +41,12 @@ object Versions {
         const val ESPRESSO_CORE = "3.4.0"
         const val CORE = "1.1.0"
     }
-
     object UI {
-
+        const val CARD_VIEW = "1.0.0"
+        const val CONSTRAINT_LAYOUT = "1.1.3"
+        const val GLIDE = "4.9.0"
+        const val RECYCLER_VIEW = "1.1.0-alpha05"
+        const val SUPPORT_DESIGN = "27.1.1"
     }
     object KOTLIN {
 

@@ -11,6 +11,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
@@ -22,6 +24,7 @@ import com.rabstract.gifapp.ui.adapter.TrendingGifsAdapter
 import com.rabstract.model.GifData
 import kotlinx.android.synthetic.main.fragment_gif_results.*
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,7 +38,7 @@ private const val KEY_LAST_ITEM_POSITION = "KEY_LAST_ITEM_POSITION"
 class TrendingGifFragment : Fragment(){
 
     private val viewModelTrending: TrendingGifViewModel by viewModel()
-    private val commonViewModel: CommonViewModel by viewModel()
+    private lateinit var commonViewModel : CommonViewModel
     private val trendingGifsAdapter: TrendingGifsAdapter by inject {
         parametersOf(
             favoriteBeerListener
@@ -59,19 +62,10 @@ class TrendingGifFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        commonViewModel = ViewModelProvider(requireActivity()).get(CommonViewModel::class.java)
         initRecyclerView()
         setUpSearchView()
         animateRecyclerViewOnlyInTheBeginning()
-        commonViewModel.isRefreshRequired.observe(
-            viewLifecycleOwner,
-            { isRefreshRequired ->
-                if (isRefreshRequired != null) {
-                    trendingGifsAdapter.refresh()
-                    trendingGifsAdapter.notifyDataSetChanged()
-                }
-
-            }
-        )
         viewLifecycleOwner.lifecycleScope.launch {
 
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -82,7 +76,7 @@ class TrendingGifFragment : Fragment(){
                 }
             }
         }
-        viewModelTrending.fetchGifsFromRemote()
+        viewModelTrending.fetchGifsFromRemote(edt_search.text.toString())
         trendingGifsAdapter.addLoadStateListener { loadState ->
                 // getting the error
                 val error = when {
@@ -104,6 +98,13 @@ class TrendingGifFragment : Fragment(){
                 }
 
         }
+
+        commonViewModel.isRefreshRequired.observe(viewLifecycleOwner, {
+            if (it) {
+                initRecyclerView()
+                viewModelTrending.fetchGifsFromRemote(edt_search.text.toString())
+            }
+        })
     }
 
     private fun initRecyclerView() {

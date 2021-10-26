@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +24,7 @@ import org.koin.core.parameter.parametersOf
 
 class FavouriteFragment : Fragment() {
     private val viewModel: FavouriteViewModel by viewModel()
-    private val commonViewModel: CommonViewModel by viewModel()
+    private lateinit var commonViewModel : CommonViewModel
     private val gifAdapter: FavoriteGifAdapter by inject { parametersOf(favoriteGifIconListener) }
     private var favoriteGifIconListener: (FavouriteGif) -> Unit = {
         commonViewModel.setRefreshRequired(true)
@@ -42,6 +44,9 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        commonViewModel = ViewModelProvider(requireActivity()).get(CommonViewModel::class.java)
+
+
         initRecyclerView()
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {

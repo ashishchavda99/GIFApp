@@ -1,12 +1,10 @@
 package com.rabstract.gifapp.ui.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rabstract.gifapp.R
 import com.rabstract.gifapp.extensions.inflate
 import com.rabstract.model.FavouriteGif
-import com.rabstract.model.GifData
 import kotlinx.android.synthetic.main.item_list_gif.view.*
 
 class FavoriteGifAdapter(private val favoriteGifListener: (FavouriteGif) -> Unit) : RecyclerView.Adapter<FavoriteViewHolder>() {

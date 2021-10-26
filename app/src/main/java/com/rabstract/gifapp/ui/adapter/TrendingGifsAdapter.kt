@@ -20,7 +20,7 @@ class TrendingGifsAdapter(private val favoriteGifListener: (GifData) -> Unit) : 
         return viewHolder
     }
 
-    private fun setFavoriteBeerListener(trendingGifViewHolder: TrendingGifViewHolder ,gifData: GifData?) {
+    private fun setFavoriteGifListener(trendingGifViewHolder: TrendingGifViewHolder, gifData: GifData?) {
         trendingGifViewHolder.itemView.item_list_gif_favorite_layer.setOnClickListener {
             val position = trendingGifViewHolder.adapterPosition
             if (position != RecyclerView.NO_POSITION) {
@@ -45,6 +45,6 @@ class TrendingGifsAdapter(private val favoriteGifListener: (GifData) -> Unit) : 
         trendingGifViewHolder.apply {
             gifData?.let { populateViews(it) }
         }
-        setFavoriteBeerListener(trendingGifViewHolder,gifData)
+        setFavoriteGifListener(trendingGifViewHolder,gifData)
     }
 }
